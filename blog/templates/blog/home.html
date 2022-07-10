@@ -1,18 +1,40 @@
 
 {% extends "blog/base.html" %}
+
 {% block content%}
+  <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'find' %}" >
+    <input class="form-control mr-sm-2" type="search" name="search">
+    <button class="btn btn btn-outline-info my-2 my-sm-0" type="submit"> Search </button>
+  </form>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Sample_No</th>
+        <th scope="col">Model_Code</th>
+        <th scope="col">Sub_Category</th>
+        <th scope="col">Curr_Location</th>
+        <th scope="col">Curr_Assignee</th>
+        <th scope="col">STPI</th>
+      </tr>
+    </thead>
+    <tbody>
             {% for post in posts %}
-            <article class="media content-section">
-              <img class="rounded-circle article-img" src="{{post.author.profile.image.url}}">
+            <p>{{post}}</p>
+            <tr>
+              <article class="media content-section">
                 <div class="media-body">
-                  <div class="article-metadata">
-                    <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-                    <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
-                  </div>
-                  <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-                  <p class="article-content">{{ post.content }}</p>
+                        <td>{{post.Sample_No}}</td>
+                        <td>{{post.Model_Code}}</td>
+                        <td>{{post.Sub_Category}}</td>
+                        <td>{{post.Curr_Location}}</td>
+                        <td>{{post.Curr_Assignee}}</td>
+                        <td>{{post.STPI}}</td>
+                    </tbody>
+                  </table>
                 </div>
               </article>
+            </tr>
             {% endfor %}
 
             {% if is_paginated %}

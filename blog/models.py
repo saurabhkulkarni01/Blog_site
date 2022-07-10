@@ -16,4 +16,13 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('post-detail',kwargs={'pk': self.pk})    
 
+class sample_no(models.Model):
+    Sample_No=models.CharField(max_length=32)
+    Model_Code=models.CharField(max_length=32)
+    Sub_Category=models.CharField(max_length=64)
+    Curr_Location=models.CharField(max_length=64)
+    Curr_Assignee=models.CharField(max_length=32)
+    STPI=models.CharField(max_length=32)
 
+    def _str_(self) -> str:
+        return self.Sample_No
